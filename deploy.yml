@@ -1,4 +1,4 @@
-#https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
+# https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,11 +34,12 @@ metadata:
     app: my-reacteproject
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-tcp-idle-timeout: "4"
-#    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-#    service.beta.kubernetes.io/azure-load-balancer-internal-subnet: "svc"
+    # service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+    # service.beta.kubernetes.io/azure-load-balancer-internal-subnet: "svc"
 spec:
   type: LoadBalancer
   ports:
   - port: 80
+    targetPort: 80
   selector:
-    app:my-reacteproject
+    app: my-reacteproject
