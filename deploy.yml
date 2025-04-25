@@ -1,4 +1,3 @@
-# https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,11 +6,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: my-reacteproject
+      app: my-reactproject
   template:
     metadata:
       labels:
-        app: my-reacteproject
+        app: my-reactproject
     spec:
       containers:
       - name: my-container-lb
@@ -24,14 +23,14 @@ spec:
             cpu: 250m
             memory: 256Mi
         ports:
-        - containerPort: 80
+        - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: my-reactproject
   labels:
-    app: my-reacteproject
+    app: my-reactproject
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-tcp-idle-timeout: "4"
     # service.beta.kubernetes.io/azure-load-balancer-internal: "true"
@@ -39,6 +38,9 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 80
+    - protocol: TCP
+      port: 80        # Port to access from outside
+      targetPort: 3000 # Port inside container
   selector:
-    app: my-reacteproject
+    app: my-reactproject
+
