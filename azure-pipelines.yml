@@ -10,6 +10,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: SonarQubePrepare@7
+  inputs:
+    SonarQube: 'Sonarqube'
+    scannerMode: 'cli'
+    configMode: 'manual'
+    cliProjectKey: 'ReactJS_ReactJS_e92d7bf1-b8d1-4963-8592-d6176c9b6848'
+    cliProjectName: 'react-docker'
+    cliSources: '.'
+
+
 - task: NodeTool@0
   inputs:
     versionSpec: '20.x'
@@ -19,6 +29,14 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+- task: SonarQubeAnalyze@7
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
+
+- task: SonarQubePublish@7
+  inputs:
+    pollingTimeoutSec: '300'
 - task: Docker@2
   inputs:
     containerRegistry: 'Doker1'
