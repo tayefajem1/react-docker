@@ -16,7 +16,7 @@ steps:
     scannerMode: 'cli'
     configMode: 'manual'
     cliProjectKey: 'ReactJS_ReactJS_e92d7bf1-b8d1-4963-8592-d6176c9b6848'
-    cliProjectName: 'react-docker'
+    cliProjectName: 'ReactJS'
     cliSources: '.'
 
 
