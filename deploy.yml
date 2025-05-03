@@ -38,9 +38,9 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - protocol: TCP
-      port: 80        # Port to access from outside
-      targetPort: 3000 # Port inside container
+  - protocol: TCP
+    port: 80        # Port to access from outside
+    targetPort: 3000 # Port inside container
   selector:
     app: my-reactproject
 
